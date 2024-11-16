@@ -67,4 +67,4 @@ Compute (next_weekday friday).
 
 Compute (next_weekday (next_weekday saturday)).
 (* =>> tuesday : day*)
-```
+```co
