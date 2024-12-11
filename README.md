@@ -26,10 +26,10 @@ The content in this folder is my annotations about the book **Software Foundatio
   - [x] Translations
   - [x] Thanks 
 -[x] Functional Programming in Coq (Basics)
-  - [] Introduction
-  - [] Data and Functions
-    - [] Enumerated Types
-    - [] Days of the Week
+  - [x] Introduction
+  - [x] Data and Functions
+    - [x] Enumerated Types
+    - [x] Days of the Week
     - [] Homework Submission Guidelines
     - [] Booleans
     - [] Types
