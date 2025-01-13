@@ -1,6 +1,5 @@
 From Coq Require Export String.
 
-
 Inductive day : Type :=
  | monday
  | tuesday
@@ -24,3 +23,7 @@ Inductive day : Type :=
 
 Compute (next_weekday friday).
 Compute (next_weekday (next_weekday saturday)).
+
+Example test_next_weekday:
+  (next_weekday (next_weekday saturday)) = tuesday.
+  Proof. simpl. reflexivity. Qed.

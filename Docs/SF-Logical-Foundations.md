@@ -67,4 +67,19 @@ Compute (next_weekday friday).
 
 Compute (next_weekday (next_weekday saturday)).
 (* =>> tuesday : day*)
-```co
+```
+ 
+So I can record what I expect the reseult to be in the form of a Coq example:
+```coq
+Example test_next_working_day:
+  (next_working_day (next_working_day saturday)) = tuesday.
+```
+
+This "code" does two things:
+  - It makes an assertion ( second working day after satuarday is tuesday)
+  - Gives the assertion a name tha can be used to refer to it later.
+
+So after this Coq can verify it, using:
+```coq
+Proof. simpl. reflexitivy. Qed.
+```

@@ -10,6 +10,7 @@ Definition negb (b:bool) : bool :=
     | true => false
     | false => true
     end.
+    
 
 Definition andb (b1:bool) (b2:bool) : bool :=
     match b1 with
@@ -22,7 +23,23 @@ Definition orb (b1:bool) (b2:bool) : bool :=
     | true => true
     | false => b2
     end.
+       
+Example test_orb1: (orb true false) = true.
+Proof. simpl. reflexivity. Qed.
+Example test_orb2: (orb false false) = false.
+Proof. simpl. reflexivity. Qed.
+Example test_orb3: (orb false true) = true.
+Proof. simpl. reflexivity. Qed.
+Example test_orb4: (orb true true) = true.
+Proof. simpl. reflexivity. Qed.
 
-    Example test_orb1: (orb true false) = true.
-    Proof. simpl. reflexivity. Qed.
-    
+
+Notation "x && y" := (andb x y).
+Notation "x || y" := (orb x y).
+Notation "! x" := (negb x)(at level 75, right associativity).
+Example test_orb5: false || false || true = true.
+Proof. simpl. reflexivity. Qed.
+Example test_andb1: true && false = false.
+Proof. simpl. reflexivity. Qed.
+Example test_negb1:  (! true) = false.
+Proof. simpl. reflexivity. Qed.

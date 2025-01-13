@@ -30,8 +30,8 @@ The content in this folder is my annotations about the book **Software Foundatio
   - [x] Data and Functions
     - [x] Enumerated Types
     - [x] Days of the Week
-    - [] Homework Submission Guidelines
-    - [] Booleans
+    - [x] Homework Submission Guidelines
+    - [x] Booleans
     - [] Types
     - [] New Types from Old
     - [] Modules
