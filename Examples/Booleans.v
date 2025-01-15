@@ -43,3 +43,9 @@ Example test_andb1: true && false = false.
 Proof. simpl. reflexivity. Qed.
 Example test_negb1:  (! true) = false.
 Proof. simpl. reflexivity. Qed.
+
+
+(* Conditional expressions*)
+Definition negb' (b:bool) : bool :=
+  if b then false
+  else true.
