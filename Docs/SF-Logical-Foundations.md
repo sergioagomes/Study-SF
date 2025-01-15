@@ -83,3 +83,47 @@ So after this Coq can verify it, using:
 ```coq
 Proof. simpl. reflexitivy. Qed.
 ```
+
+#### Types
+
+- Every expression in Coq has a type, use command **Check** to print a type of an expression
+```coq
+Check true
+  : bool.
+
+(*
+  true : bool
+	   : bool
+*)
+
+Check (negb true)
+  : bool.
+(*
+  ! true : bool
+	   : bool
+*)
+```
+
+- Functions like negb itself are also data values (true and false), their types are called function types, and they're written with arrows, like:
+```coq
+Check negb
+  : bool → bool.
+```
+- negb type is written **bool -> bool**.
+- is read like "Given an input of type bool, this function produces an output of type bool".
+
+#### New Types from Old
+- Enumerated Type and ADTs
+```coq
+(*Enumerated type*)
+Inductive rbg : Type :=
+| red
+| green
+| blue.
+
+(*ADTs*)
+Inductive color : Type :=
+| black
+| white
+| primary (p : rbg).
+```
