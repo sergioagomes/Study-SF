@@ -93,7 +93,7 @@ Check negb
 (*Types*)
 
 (*Enumerated type*)
-Inductive rbg : Type :=
+Inductive rgb : Type :=
 | red
 | green
 | blue.
@@ -102,4 +102,124 @@ Inductive rbg : Type :=
 Inductive color : Type :=
 | black
 | white
-| primary (p : rbg).
+| primary (p : rgb).
+
+
+Definition monochrome (c:color) : bool :=
+  match c with
+  | black => true
+  | white => true
+  | primary p => false
+  end.
+
+Definition isred (c : color) : bool :=
+  match c with
+  | black => false
+  | white => false
+  | primary red => true
+  | primary _ => false
+  end.
+(* the pattern primary _  is a shorhand for 
+the constructor primary applied to any rgb constructor expect red.*)
+
+
+
+(* Define a Module in Coq*)
+Module Playground.
+  Definition foo : rgb := blue.
+  Definition bar : rgb := red.
+End Playground.
+
+Definition foo : bool := true.
+Definition bar : bool := true.
+
+Check Playground.foo : rgb.
+Check foo : bool.
+
+(*Tuples*)
+Module TuplePlayGround.
+
+Inductive bit : Type :=
+| b1
+| b0.
+
+(*Tuple Type*)
+Inductive nybble : Type :=
+  | bits (b0 b1 b2 b3 : bit).
+
+Check (bits b1 b0 b1 b0)
+ : nybble.
+
+
+(*test with all bits are b0*)
+Definition all_zero (nb: nybble) : bool :=
+ match nb with
+ | (bits b0 b0 b0 b0) => true
+ | (bits _ _ _ _) => false
+ end.
+
+End TuplePlayGround.
+
+(* Numbers*)
+Module NatPlayground.
+
+(*define natural numbers*)
+Inductive nat : Type :=
+ | O
+ | S (n : nat).
+
+(*predecessor function*)
+Definition pred (n : nat) : nat :=
+  match n with
+  | O => O
+  | S n' => n'
+  end.
+(*The second branch can be read: "if n has the form S n' for some n', then return n'."
+*) 
+
+End NatPlayground.
+
+Check (S(S(S (S 0)))).
+
+Definition minusfour (n : nat) : nat :=
+  match n with
+  | O => O
+  | S O => O
+  | S (S O) => O
+  | S (S (S O)) => O
+  | S (S (S (S n'))) => n'
+  end.
+
+Compute(minusfour 8).
+
+Check S : nat -> nat.
+Check pred : nat -> nat.
+Check minusfour : nat -> nat.
+
+
+(*Define Recursion*)
+Fixpoint even (n:nat) : bool :=
+  match n with
+  | O => true
+  | S O => false
+  | S (S n') => even n'
+  end.
+
+Definition odd (n : nat) : bool :=
+   negb (even n).
+
+Example test_odd1: odd 1 = true.
+Proof. simpl. reflexivity. Qed.
+Example test_odd2: odd 4 = false.
+Proof. simpl. reflexivity. Qed.
+
+
+Module NatPlayground2.
+
+Fixpoint plus (n : nat) (m : nat) : nat :=
+  match n with
+  | O => m
+  | S n' => S (plus n' m)
+  end.
+
+Compute(plus 10 20).

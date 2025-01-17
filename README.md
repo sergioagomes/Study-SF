@@ -32,10 +32,10 @@ The content in this folder is my annotations about the book **Software Foundatio
     - [x] Days of the Week
     - [x] Homework Submission Guidelines
     - [x] Booleans
-    - [] Types
-    - [] New Types from Old
-    - [] Modules
-    - [] Tuples
+    - [x] Types
+    - [x] New Types from Old
+    - [x] Modules
+    - [x] Tuples
     - [] Numbers
   - [] Proof by Simplification
   - [] Proof by Rewriting

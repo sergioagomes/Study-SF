@@ -127,3 +127,62 @@ Inductive color : Type :=
 | white
 | primary (p : rbg).
 ```
+
+#### Modules
+
+In Coq, the module system allows you to organize your code and limit the scope of definitions to avoid naming conflicts and improve modularity.
+
+
+
+#### Numbers
+
+- define natural number:
+```coq
+Inductive nat : Type :=
+  | O
+  | S (n : nat).
+```
+- With this definition, 0 is represented by **O**, 1 by **S O**, 2 by **S(S O)**.
+- O constructor represents zero - (this is a letter "O" not the numeral 0).
+- S can be put in front of a natural number to yield another one -- i.e., if n is a natural number, then S n is too.
+
+- So the constructo O belongs to the set nat.
+- If **n** is a constructor expression belonging to the set nat, then **S n** is also a constructor expression belonging to the set nat.
+- constructor expressions formed in these two ways are the only ones belonging to the set nat.
+
+For most interesting computations involving numbers, simple pattern matching is not enough: we also need recursion. For example, to check that a number n is even, we may need to recursively check whether n-2 is even. Such functions are introduced with the keyword Fixpoint instead of Definition.
+```coq
+Fixpoint even (n:nat) : bool :=
+  match n with
+  | O ⇒ true
+  | S O ⇒ false
+  | S (S n') ⇒ even n'
+  end.
+```
+- Fixpoint is use when we want do recursion.
+- We can define functions with multi-argument with recursion:
+```coq
+Fixpoint plus (n : nat) (m : nat) : nat :=
+  match n with
+  | O ⇒ m
+  | S n' ⇒ S (plus n' m)
+  end.
+
+Compute (plus 3 2).
+(* ===> 5 : nat *)
+```
+- The steps of simplification that Coq performs:
+```coq
+(*      plus 3 2
+   i.e. plus (S (S (S O))) (S (S O))
+    ==> S (plus (S (S O)) (S (S O)))
+          by the second clause of the match
+    ==> S (S (plus (S O) (S (S O))))
+          by the second clause of the match
+    ==> S (S (S (plus O (S (S O)))))
+          by the second clause of the match
+    ==> S (S (S (S (S O))))
+          by the first clause of the match
+   i.e. 5  *)
+```
+
