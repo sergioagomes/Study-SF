@@ -24,10 +24,7 @@ and verification of mathematical proofs. these tools fals into two broad categor
 
 ## Functional Programing In Coq
 
-### Introduction
-
 ### Data and Functions
-
 #### Day of the Week
 
 defining a set of data values --a type:
@@ -185,4 +182,48 @@ Compute (plus 3 2).
           by the first clause of the match
    i.e. 5  *)
 ```
+- if two or more arguments have the same type, they casn be written together:
+```coq
+Fixpoint mult (n m : nat) : nat :=
+  match n with
+  | O ⇒ O
+  | S n' ⇒ plus m (mult n' m)
+  end.
+```
+- we can match two expressions at once by putting a comma between them:
+```coq
+Fixpoint minus (n m:nat) : nat :=
+  match n, m with
+  | O , _ ⇒ O
+  | S _ , O ⇒ n
+  | S n', S m' ⇒ minus n' m'
+  end.
+```
+- We also can make numerical expressions easier to read:
+```coq
+Notation "x + y" := (plus x y)
+                       (at level 50, left associativity)
+                       : nat_scope.
+Notation "x - y" := (minus x y)
+                       (at level 50, left associativity)
+                       : nat_scope.
+Notation "x * y" := (mult x y)
+                       (at level 40, left associativity)
+                       : nat_scope.
+```
+- OBS: The level, associativity, and nat_scope annotations control how these notations are treated by Coq's parser.
 
+- Coq comes with almost nothing built-in, so if we want test equality, we need define.
+```coq
+Fixpoint equality (n m : nat) : bool :=
+  match n with
+  | O ⇒ match m with
+         | O ⇒ true
+         | S m' ⇒ false
+         end
+  | S n' ⇒ match m with
+            | O ⇒ false
+            | S m' ⇒ equality n' m'
+            end
+  end.
+```
