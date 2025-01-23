@@ -1,7 +1,5 @@
 From Coq Require Export String.
 
-
-
 Definition nandb (b1:bool) (b2:bool) : bool :=
     match b1, b2 with
     | true, true => false

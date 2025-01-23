@@ -248,6 +248,7 @@ Fixpoint exp (base power : nat) : nat :=
   | S p => mult base (exp base p)
   end.
 
+Compute(exp 2 3).
 
 (* Make numerical expressions easy to read*)
 Notation "x + y" := (plus x y)
