@@ -227,3 +227,26 @@ Fixpoint equality (n m : nat) : bool :=
             end
   end.
 ```
+
+### Proof by Simplification
+A proof by simplification involves breaking down complex terms into their simplest forms by systematically applying definitions, axioms, and reduction rules of the system. The goal is to reduce the problem step by step until the conclusion becomes trivial or self-evident. This method is particularly effective when the proof's objective can be achieved solely by simplifying expressions, without requiring additional logical reasoning or case analysis.
+
+```coq
+Theorem plus_O_n : ∀ n : nat, 0 + n = n.
+Proof.
+  intros n. simpl. reflexivity. Qed.
+
+
+∀ -> forall
+```
+
+- **Theorem:** it's a math afirmation that we want prove.
+- **plus_0_n:** theorem name.
+- **∀ n : nat, 0 + n = n**
+  - **∀ n : nat:** means forall n of type nat 
+  - **0 + n = n:** This is the property we are proving. It states that adding 0 to any natural number n results in n itself. 
+- **Proof. :** stats proof
+    -**intros :** A tactic used to introduce variables or hypotheses into the context of the test. In this case, the variable **n**.
+    -**simpl:** It is a tactic that simplifies the expression in the current target. In this case, the expression **0 + n** is simplified to **n,** because the definition of addition in Coq is recursive, and **0 + n** is definitionally equal to **n**.
+    - **reflexivity:** It is a tactic used to prove equalities in which both sides are identical or definitionally equal.
+    - **Qed. :** Finish proof and saves theorem.

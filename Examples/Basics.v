@@ -309,3 +309,14 @@ Notation "x <=? y" := (leb x y) (at level 70) : nat_scope.
 
 Example test_leb3': (4 <=? 2) = false.
 Proof. simpl. reflexivity. Qed.
+
+
+(*PROOF BY SIMPLIFICATION*)
+Theorem plus_O_n : forall n : nat, 0 + n = n.
+Proof.
+  intros n. simpl. reflexivity. Qed.
+
+(*reflexiviity do simpl*)
+Theorem plus_O_n' : forall n : nat, 0 + n = n.
+Proof.
+  intros n. reflexivity. Qed.
