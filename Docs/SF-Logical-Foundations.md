@@ -237,7 +237,7 @@ Proof.
   intros n. simpl. reflexivity. Qed.
 
 
-∀ -> forall
+(*∀ ->  means forall*)
 ```
 
 - **Theorem:** it's a math afirmation that we want prove.
@@ -250,3 +250,14 @@ Proof.
     -**simpl:** It is a tactic that simplifies the expression in the current target. In this case, the expression **0 + n** is simplified to **n,** because the definition of addition in Coq is recursive, and **0 + n** is definitionally equal to **n**.
     - **reflexivity:** It is a tactic used to prove equalities in which both sides are identical or definitionally equal.
     - **Qed. :** Finish proof and saves theorem.
+
+### Proof by Rewriting
+Proof by rewriting is a technique that uses a known equality (for example, a hypothesis like x = y) to replace one term with another in an expression.
+
+```coq
+Theorem plus_id_example : ∀ n m:nat,
+  n = m →
+  n + n = m + m.
+
+(*->: means implies *)
+```

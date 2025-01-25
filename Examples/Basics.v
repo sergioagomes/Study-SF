@@ -320,3 +320,7 @@ Proof.
 Theorem plus_O_n' : forall n : nat, 0 + n = n.
 Proof.
   intros n. reflexivity. Qed.
+
+Theorem plus_id_example : forall n m:nat,
+  n = m ->
+  n + n = m + m.
