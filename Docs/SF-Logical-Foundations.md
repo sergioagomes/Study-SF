@@ -261,3 +261,46 @@ Theorem plus_id_example : ∀ n m:nat,
 
 (*->: means implies *)
 ```
+
+### Proof by Case Analysis
+- Not Everything can be proved by simple calculation and rewriting.
+- In general, unknown, hypothetical values (arbitrary numbers, booleans, lists, etc.) can block simplification.
+- Example by book, where we get stucked.
+- command **Abort** is used to give up for a while.
+```coq
+Theorem plus_1_neq_0_firsttry: forall n : nat,
+ (n + 1) =? 0 = false.
+
+Proof.
+  intros n.
+  simpl. (*does nothing*)
+Abort.
+```
+- this happens because **n** is unknow, so neither expressions could be simplified.
+- So to make progress, we need to consider the possible forms of **n** separately.
+- if **n** is **0**, we can calculate the final result of **(n + 1) =? 0**, and check the result is false, and
+**n = S n'** for some **n'**.
+- But we don't know exactly what number **n + 1** represents.
+- we can calculate that at least it will begin with one **S**, with this calculate **(n + 1) =?** again.
+- The tatic that tells Coq to consider, separately, the cases where **n = O** and where **n = S n'** is called
+**destruct**.
+- Example by book:
+```coq
+Theorem plus_1_neq_0 : ∀ n : nat,
+  (n + 1) =? 0 = false.
+Proof.
+  intros n. destruct n as [| n'] eqn:E.
+  - reflexivity.
+  - reflexivity. 
+  Qed.
+```
+- destruct generates two subgoals, which we must them prove, separately, in order to get Coq to accept
+the theorem.
+- Annotation **as [| n']** is called an intro pattern, tell to coq what variable names to introduce in
+each subgoal.
+- In general, what goes between the square bracks is a list of lists of names, separated by **|**, in our
+case, the first component is empty, since O constructor doesn't  take any arguments, the second component
+gives a single name, n', since S is a unary constructor.
+- In each subgoal, Coq remembers the assumption about n that is relevant for this subgoal -- either n = 0 or n = S n' for some n'.
+-  The eqn:E annotation tells to destruct to give name E to this equation.
+- the **-** signs after destruct are called bullets, and they mark the parts of the proof that correspond to the two generated subgoals.
