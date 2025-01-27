@@ -303,4 +303,4 @@ case, the first component is empty, since O constructor doesn't  take any argume
 gives a single name, n', since S is a unary constructor.
 - In each subgoal, Coq remembers the assumption about n that is relevant for this subgoal -- either n = 0 or n = S n' for some n'.
 -  The eqn:E annotation tells to destruct to give name E to this equation.
-- the **-** signs after destruct are called bullets, and they mark the parts of the proof that correspond to the two generated subgoals.
+- the **-** signs after destruct are called bullets, and they mark the parts of the proof that correspond to the two generated subgoals. The part of the proof script that comes after a bullet is the entire proof for the corresponding subgoal.
