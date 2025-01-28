@@ -5,7 +5,6 @@ Proof.
   { (* Case when b = true *)
     destruct c eqn:Ec.
     + (* Case when c = true *)
-      intros H.
       reflexivity.
     + (* Case when c = false *)
       intros H.
@@ -17,6 +16,7 @@ Proof.
     destruct c eqn:Ec.
     + (* Case when c = true *)
       intros H.
+      simpl in H.
       reflexivity.
     + (* Case when c = false *)
       intros H.
