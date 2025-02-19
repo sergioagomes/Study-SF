@@ -368,3 +368,22 @@ Proof.
       + reflexivity.
       + reflexivity.
 Qed.
+
+Theorem plus_1_neq_0': forall n: nat,
+    (n + 1) =? 0 = false.
+Proof.
+  intros [| n].
+  - reflexivity.
+  - reflexivity.
+Qed.
+
+Theorem andb_commutative'' :
+  forall b c, andb b c = andb c b.
+Proof.
+  intros [] [].
+  - reflexivity.
+  - reflexivity.
+  - reflexivity.
+  - reflexivity.
+Qed.
+
