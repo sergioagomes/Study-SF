@@ -47,7 +47,7 @@ Definition andb (b1:bool) (b2:bool) : bool :=
     | false => false
     end.
 
-Definition orb (b1:bool) (b2:bool) : bool :=
+Definition orb (b1 b2 :bool) : bool :=
     match b1 with
     | true => true
     | false => b2
@@ -122,19 +122,17 @@ Definition isred (c : color) : bool :=
 (* the pattern primary _  is a shorhand for 
 the constructor primary applied to any rgb constructor expect red.*)
 
-
-
 (* Define a Module in Coq*)
 Module Playground.
-  Definition foo : rgb := blue.
-  Definition bar : rgb := red.
+  Definition b : rgb := blue.
+  Definition r : rgb := red.
 End Playground.
 
-Definition foo : bool := true.
-Definition bar : bool := true.
+Definition b : bool := true.
+Definition r : bool := true.
 
-Check Playground.foo : rgb.
-Check foo : bool.
+Check Playground.b : rgb.
+Check b : bool.
 
 (*Tuples*)
 Module TuplePlayGround.
@@ -345,24 +343,27 @@ Qed.
 Theorem plus_1_neq_0 : forall n : nat,
   (n + 1) =? 0 = false.
 Proof.
-  intros n. destruct n as [| n'] eqn:E.
-  - reflexivity.
+  intros n. 
+  destruct n as [|n'] eqn:E.
+  - simpl. reflexivity.
   - reflexivity. 
 Qed.
 
 Theorem negb_involutive : forall b : bool,
   negb (negb b) = b.
 Proof.
-  intros b. destruct b eqn:E.
+  intros b. 
+  destruct b eqn:E.
   - reflexivity.
   - reflexivity.
 Qed.
 
 Theorem andb_commutative : forall b c, andb b c = andb c b.
 Proof.
-    intros b c. destruct b eqn:Eb.
+    intros b c. 
+    destruct b eqn:Eb.
     - destruct c eqn:Ec.
-      + reflexivity.
+      + simpl. reflexivity.
       + reflexivity.
     - destruct c eqn:Ec.
       + reflexivity.
@@ -380,9 +381,9 @@ Qed.
 Theorem andb_commutative'' :
   forall b c, andb b c = andb c b.
 Proof.
-  intros [] [].
-  - reflexivity.
-  - reflexivity.
+  intros [] []. (* == destrct a,b*)
+  - simpl. reflexivity.
+  - simpl. reflexivity.
   - reflexivity.
   - reflexivity.
 Qed.
