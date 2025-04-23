@@ -5,10 +5,4 @@ To get a concrete sense of this, find a way to write a sensible Fixpoint definit
 (* FILL IN HERE *)
 ☐
 *)
-Require Import Nat.
-
-Fixpoint double_weird (n : nat) : nat :=
-  match n with
-  | 0 => 0
-  | _ => 2 + double_weird (pred n)
-  end.
+Fixpoint loop (n : nat) : nat := loop n.
